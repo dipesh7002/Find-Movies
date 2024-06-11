@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Search Bar</title>
@@ -8,7 +8,6 @@
         background-color: #2130bd;
         margin: 100px 40%;
       }
-
       form {
         background-color: #4654e1;
         width: 300px;
@@ -18,7 +17,6 @@
         flex-direction: row;
         align-items: center;
       }
-
       input {
         all: unset;
         font: 16px system-ui;
@@ -27,12 +25,10 @@
         width: 100%;
         padding: 6px 10px;
       }
-
       ::placeholder {
         color: #fff;
         opacity: 0.7;
       }
-
       svg {
         color: #fff;
         fill: currentColor;
@@ -40,7 +36,6 @@
         height: 24px;
         padding: 10px;
       }
-
       button {
         all: unset;
         cursor: pointer;
@@ -67,17 +62,35 @@
         </svg>
       </button>
     </form>
+    <div class="fmoviesSearch">
+      <ul id="fmovieslist">
+        <li id="fmovies"></li>
+      </ul>
+    </div>
+    <!-- Embed the Django data as a JSON object in a script tag -->
+    <script>
+      // Make sure JSON data is embedded correctly
+      var AllFmovies = JSON.parse("{{ AllFmovies|escapejs }}");
+    </script>
+
     <script>
       const f = document.getElementById("form");
       const q = document.getElementById("query");
-      const google = "https://www.google.com/search?q=site%3A+";
-      const site = "pagedart.com";
-
+      const unorderedList = document.getElementById("fmovieslist");
+      unorderedList.innerHTML = "";
       function submitted(event) {
         event.preventDefault();
-        const url = google + site + "+" + q.value;
-        const win = window.open(url, "_blank");
-        win.focus();
+        console.log(AllFmovies, "here i am");
+        if (q.value === "a") {
+          for (let i = 0; i < AllFmovies.length; i++) {
+            console.log(AllFmovies[i].fields.movie_name, "here 2");
+            const movieName = AllFmovies[i].fields.movie_name; // Access the movie name
+            const listItem = document.createElement("li"); // Create a new list item
+            listItem.textContent = movieName; // Set the text content to the movie name
+            console.log(listItem);
+            unorderedList.appendChild(listItem); // Append the list item to the movie list
+          }
+        }
       }
 
       f.addEventListener("submit", submitted);
