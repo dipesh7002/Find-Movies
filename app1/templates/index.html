@@ -5,18 +5,45 @@
     <title>Search Results</title>
     <style>
       body {
-        background-color: #2130bd;
+        background-color: #4b494d;
         margin: 100px 40%;
         color: #fff;
+      }
+      .table_design{
+        border: 1px solid white;
+        border-collapse: collapse;
+        width: 700px;
+      }
+      .table_design th, .table_design td{
+        border: 1px solid white;
+      }
+      #movie_link_href{
+        color: white;
+      }
+      h1{
+        width: 600px
       }
     </style>
   </head>
   <body>
     <h1>Search Results for: {{ search_term }}</h1>
     <div id="results">
-      {% for result in results %}
-      <p>Result is: {{ result }}</p>
+      <table class="table_design"><tr>
+        <th>Movie Name</th>
+        <th>Movie Link</th>
+      </tr>
+      {% for result in search_results %}
+
+      <tr>
+        <td>{{result.movie_name}}</td>
+        <td><a id = "movie_link_href" href="{{result.movie_link}}">{{result.movie_link}}</a></p>
+        </td>
+
+      </tr>
       {% endfor %}
+
+    </table>
+
     </div>
   </body>
 </html>

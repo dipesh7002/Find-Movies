@@ -4,19 +4,23 @@ from .models import Fmovies
 from django.core import serializers
 
 def search_view(request, search_term):
+    
     Fmovies_all = Fmovies.objects.all()
 
     AllFmovies = serializers.serialize('json', Fmovies_all)
-    results = []
+    search_results = []
     for fmovies in Fmovies_all:
-        if search_term == fmovies.movie_name:
-            results.append(fmovies.movie_link)
-    if not results:
+        if search_term.lower() == fmovies.movie_name.lower():
+            search_results.append({
+                "movie_name": fmovies.movie_name,
+                "movie_link": fmovies.movie_link
+            })
+    if not search_results:
         results = ["No results whatsoever"]
 
     return render(request, "index.html",    {
         "search_term": search_term,
-        "results": results
+        "search_results": search_results
 
     })
 
