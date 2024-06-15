@@ -26,6 +26,7 @@ def search_view(request, search_term):
 
 def search_redirect(request):
     search_term = request.GET.get('q')
+    
     if search_term:
         return redirect('search_results', search_term = search_term)
     else:
