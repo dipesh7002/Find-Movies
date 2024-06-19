@@ -5,54 +5,85 @@
     <title>Search Bar</title>
     <style>
       body {
-        background-color: #2130bd;
+        background-color: #d9eff5;
         margin: 100px 40%;
-        color: #fff;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       form {
         background-color: #4654e1;
-        width: 300px;
-        height: 44px;
-        border-radius: 5px;
+        width: 200%;
+        height: 80px;
+        border-radius: 50px;
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          to right,
+          #2c6dd5 0%,
+          #2c6dd5 28%,
+          #ff4b5a 91%,
+          #ff4b5a 100%
+        );
       }
       input {
         all: unset;
-        font: 16px system-ui;
+        font: 20px system-ui;
         color: #fff;
         height: 100%;
         width: 100%;
-        padding: 6px 10px;
+        padding: 50px 50px;
       }
       ::placeholder {
         color: #fff;
         opacity: 0.7;
       }
+      input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+      }
+      input[type="search"]::-ms-clear {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+      input[type="search"]::-ms-reveal {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+      input[type="search"]::-moz-cancel-button {
+        display: none;
+      }
       svg {
         color: #fff;
         fill: currentColor;
-        width: 24px;
-        height: 24px;
-        padding: 10px;
+        width: 34px;
+        height: 34px;
+        padding: 0px;
       }
       button {
         all: unset;
         cursor: pointer;
         width: 44px;
         height: 44px;
+        display: flex; /* Ensure button is flex container */
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
       }
     </style>
   </head>
   <body>
-    <h1>This is the search page</h1>
     <form action="{% url 'search_redirect' %}" id="form" method="get">
       <input
         type="search"
         id="query"
         name="q"
-        placeholder="Search..."
+        placeholder="Search For Movies"
         aria-label="Search through site content"
       />
       <button type="submit">
@@ -64,5 +95,24 @@
         </svg>
       </button>
     </form>
+    <h1>Search Results for: {{ search_term }}</h1>
+    <div id="results">
+      <table class="table_design"><tr>
+        <th>Movie Name</th>
+        <th>Movie Link</th>
+      </tr>
+      {% for result in search_results %}
+
+      <tr>
+        <td>{{result.movie_name}}</td>
+        <td><a id = "movie_link_href" href="{{result.movie_link}}">{{result.movie_link}}</a></p>
+        </td>
+
+      </tr>
+      {% endfor %}
+
+    </table>
+
+    </div>
   </body>
 </html>

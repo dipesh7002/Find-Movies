@@ -16,7 +16,6 @@ def TF_IDF(movie_name):
     conn = get_db_connection()
     cur = conn.cursor()
     words_list = movie_name.split(' ')
-    total_no_of_words = len(words_list)
     IDF_res = IDF(movie_name)
     my_dict = {}
     store_list = []
@@ -28,11 +27,8 @@ def TF_IDF(movie_name):
         cur.execute("SELECT movie_name FROM fmovies WHERE movie_name ILIKE %s", ( ('% ' + word + ' %',)))
         store_list = cur.fetchall()
         for stored_items in store_list:
-
-            for items in store_list:
-                print(items)
-                for word in words_list:
-
+            for word in words_list:
+                for items in store_list:
                     if word == items:
                         my_dict[word] += 1/len(stored_items)
                     else:
@@ -72,39 +68,40 @@ def cosineSimilarity(movie_name):
     word_list = movie_name.split(' ')
     word_length = len(word_list)
 
-
-def TF(movie_name):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    movie_name_to_list = movie_name.split(' ')
-    TF_value = []
+print(TF_IDF("and in"))
+# def TF(movie_name):
+#     conn = get_db_connection()
+#     cur = conn.cursor()
+#     movie_name_to_list = movie_name.split(' ')
+#     TF_value = []
+#     movie_words = []
     
-    for each_word_in_movie in movie_name_to_list:
-        word_count = 0
-        total_words_in_all_movies = 0
+#     for each_word_in_movie in movie_name_to_list:
+#         word_count = 0
+#         total_words_in_all_movies = 0
 
-        # Use a SQL pattern to match the word in movie names
-        cur.execute("SELECT COUNT(*) FROM fmovies WHERE movie_name ILIKE %s", ( ('% ' + each_word_in_movie + ' %',)))
-        query_store_list = cur.fetchall()
+#         # Use a SQL pattern to match the word in movie names
+#         cur.execute("SELECT movie_name FROM fmovies WHERE movie_name ILIKE %s", ( ('% ' + each_word_in_movie + ' %',)))
+#         query_store_list = cur.fetchall()
 
-        for query_each_movie in query_store_list:
-            movie_words = query_each_movie[0].split()  # split the movie name into words
-            word_count += movie_words.count(each_word_in_movie)
-            total_words_in_all_movies += len(movie_words)
+#         for query_each_movie in query_store_list:
+#             movie_words = query_each_movie[0].split(' ')  # split the movie name into words
+#             word_count += movie_words.count(each_word_in_movie)
+#             total_words_in_all_movies += len(movie_words)
         
-        if total_words_in_all_movies > 0:
-            tf = word_count / total_words_in_all_movies
-        else:
-            tf = 0
+#         if total_words_in_all_movies > 0:
+#             tf = word_count / total_words_in_all_movies
+#         else:
+#             tf = 0
         
-        TF_value.append({each_word_in_movie: tf})
+#         TF_value.append({each_word_in_movie: tf})
     
-    cur.close()
-    conn.close()
+#     cur.close()
+#     conn.close()
 
 
-result = TF("and")
-print(result)
+# result = TF("and")
+# print(result)
 
 # A.B = |A| * |B| cos thita
 #cosine similarity = A.B/(|A| * |B|)
