@@ -13,7 +13,10 @@
         align-items: center;
         justify-content: center;
       }
-      form {
+      #new-form{
+        background-color: #ff4b5a;
+      }
+      #form {
         background-color: #4654e1;
         width: 200%;
         height: 80px;
@@ -95,23 +98,13 @@
         </svg>
       </button>
     </form>
-    <h1>Search Results for: {{ search_term }}</h1>
-    <div id="results">
-      <table class="table_design"><tr>
-        <th>Movie Name</th>
-        <th>Movie Link</th>
-      </tr>
-      {% for result in search_results %}
-
-      <tr>
-        <td>{{result.movie_name}}</td>
-        <td><a id = "movie_link_href" href="{{result.movie_link}}">{{result.movie_link}}</a></p>
-        </td>
-
-      </tr>
-      {% endfor %}
-
-    </table>
+    <form action="{% url 'payments' %}" id="new-form" method="post">
+      {%csrf_token%}
+  <input type="hidden" name = "purchase_order_id" value="1">
+  <input type="hidden" name="amount", value="1000", id="">
+  <input type="hidden" name="return_url", value="http://127.0.0.1:8000"> 
+  <input type="submit", class="btn btn-danger", value="Pay with Khalti">
+</form>
 
     </div>
   </body>
