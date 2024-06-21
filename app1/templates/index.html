@@ -9,15 +9,18 @@
         margin: 100px 40%;
         color: black;
 
+        display: flex;
         flex-direction: column;
-        min-height: 100vh;
-        margin: 0;
+        align-items: center;
+        justify-content: center;
+        /* min-height: 100vh; */
+ 
       }
       .table_design{
         border: 5px solid black;
         border-collapse: collapse;
         
-        width: 700px;
+        width: 1000px;
         border-radius: 10px;
         box-shadow: 5px;
       }
@@ -27,8 +30,11 @@
       #movie_link_href{
         color: black;
       }
+
       h1{
-        width: 600px
+        width:max-content;
+        font-size: larger;
+        margin-top: 50px;
       }
       tr:nth-child(even) {
         background-color: #b198be;
@@ -38,14 +44,13 @@
       }
       #form {
         background-color: #4654e1;
-        width: 40%;
+        width: 200%;
         height: 80px;
         border-radius: 50px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin-top: 100px;
         background: linear-gradient(
           to right,
           #2c6dd5 0%,
@@ -54,6 +59,7 @@
           #ff4b5a 100%
         );
       }
+
       input {
         all: unset;
         font: 20px system-ui;
@@ -62,6 +68,7 @@
         width: 100%;
         padding: 50px 50px;
       }
+
       ::placeholder {
         color: #fff;
         opacity: 0.7;
@@ -74,11 +81,13 @@
         width: 0;
         height: 0;
       }
+
       input[type="search"]::-ms-reveal {
         display: none;
         width: 0;
         height: 0;
       }
+
       input[type="search"]::-moz-cancel-button {
         display: none;
       }

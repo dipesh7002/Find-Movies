@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Fmovies, HindiMovies, Onehd, OneTwoThreeMovies
+from .models import Fmovies, HindiMovies, Onehd
 
 admin.site.register(Fmovies)
 admin.site.register(HindiMovies)
