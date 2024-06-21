@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Fmovies
-from .models import HindiMovies
+from .models import Fmovies, HindiMovies, Onehd
 from django.core import serializers
 import requests
 import json
-movie_list = [Fmovies, HindiMovies]
+movie_list = [Fmovies, HindiMovies, Onehd]
+movie_urls = ["https://ww4.fmovies.co/movies/", "https://www.hindimovies.to/all-movies", "https://en.uwatchfree-official.lol/movies?page=1"]
 
 def search_view(request, search_term):
     search_results = []
@@ -22,7 +22,9 @@ def search_view(request, search_term):
         "search_term": search_term,
         "search_results": search_results
     })
-
+def urls_verify(request):
+    for movie_url in movie_urls:
+        pass
 
 def search_redirect(request):
     search_term = request.GET.get('q')

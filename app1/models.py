@@ -8,16 +8,6 @@
 from django.db import models
 
 
-class App1Student(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=100)
-    des = models.TextField()
-
-    class Meta:
-        managed = False
-        db_table = 'app1_student'
-
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -150,3 +140,43 @@ class HindiMovies(models.Model):
     class Meta:
         managed = False
         db_table = 'hindi_movies'
+
+
+
+class Onehd(models.Model):
+    sn = models.IntegerField(primary_key=True)
+    movie_name = models.CharField(max_length=255, blank=True, null=True)
+    movie_link = models.CharField(max_length=355, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'onehd'
+
+
+# class OneTwoThreeMovies(models.Model):
+#     sn = models.IntegerField(primary_key=True)
+#     movie_name = models.CharField(max_length=255, blank=True, null=True)
+#     movie_link = models.CharField(max_length=233, blank=True, null=True)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'one_two_three_movies'
+
+# class Popcornflix(models.Model):
+#     sn = models.IntegerField()
+#     movie_name = models.CharField(max_length=255, blank=True, null=True)
+#     movie_link = models.CharField(max_length=355, blank=True, null=True)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'popcornflix'
+
+
+# class Uwatchfree(models.Model):
+#     sn = models.IntegerField()
+#     movie_name = models.CharField(max_length=255, blank=True, null=True)
+#     movie_link = models.CharField(max_length=355, blank=True, null=True)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'uwatchfree'
