@@ -1,10 +1,2 @@
-import asyncio
-
-async def foo():
-    print("Start")
-    await printName()
-    print("Ended")
-
-async def printName():
-    await print("Name") 
-
+tuple3 = ('python',)*3
+print(tuple3)

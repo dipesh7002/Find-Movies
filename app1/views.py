@@ -22,9 +22,20 @@ def search_view(request, search_term):
         "search_term": search_term,
         "search_results": search_results
     })
+
 def urls_verify(request):
+    refined_movie_list = []
     for movie_url in movie_urls:
-        pass
+        try:
+            response = requests.get(movie_url)
+            if response.status_code!=404:
+                refined_movie_list.append(movie_url)
+        except requests.exceptions.RequestException as e:
+            print(e)
+        
+    print(refined_movie_list)
+        
+            
 
 def search_redirect(request):
     search_term = request.GET.get('q')

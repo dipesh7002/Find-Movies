@@ -1,3 +1,7 @@
-from django.test import TestCase
+import requests
+try:
+    response = requests.get("http://www.fmoviessss.com/")
+except requests.exceptions.RequestException as e:
+    print(e)
 
-# Create your tests here.
+# print(response.status_code)

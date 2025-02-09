@@ -37,7 +37,7 @@
         margin-top: 50px;
       }
       tr:nth-child(even) {
-        background-color: #b198be;
+        background-color: #98b4be;
       }
       tr:nth-child(odd){
         background-color: rgb(234, 205, 169);
@@ -132,6 +132,8 @@
     
     <h1>Search Results for: {{ search_term }}</h1>
     <div id="results">
+      {% if search_results %}
+
       <table class="table_design"><tr>
         <th>Movie Name</th>
         <th>Movie Link</th>
@@ -145,7 +147,9 @@
 
       </tr>
       {% endfor %}
-
+      {% else %}
+      <h1>NO search item found!!</h1>
+      {% endif %}
     </table>
 
     </div>
