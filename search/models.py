@@ -153,30 +153,30 @@ class Onehd(models.Model):
         db_table = 'onehd'
 
 
-# class OneTwoThreeMovies(models.Model):
-#     sn = models.IntegerField(primary_key=True)
-#     movie_name = models.CharField(max_length=255, blank=True, null=True)
-#     movie_link = models.CharField(max_length=233, blank=True, null=True)
+class OneTwoThreeMovies(models.Model):
+    sn = models.IntegerField(primary_key=True)
+    movie_name = models.CharField(max_length=255, blank=True, null=True)
+    movie_link = models.CharField(max_length=233, blank=True, null=True)
 
-#     class Meta:
-#         managed = False
-#         db_table = 'one_two_three_movies'
+    class Meta:
+        managed = False
+        db_table = 'one_two_three_movies'
 
-# class Popcornflix(models.Model):
-#     sn = models.IntegerField()
-#     movie_name = models.CharField(max_length=255, blank=True, null=True)
-#     movie_link = models.CharField(max_length=355, blank=True, null=True)
+class Popcornflix(models.Model):
+    sn = models.IntegerField()
+    movie_name = models.CharField(max_length=255, blank=True, null=True)
+    movie_link = models.CharField(max_length=355, blank=True, null=True)
 
-#     class Meta:
-#         managed = False
-#         db_table = 'popcornflix'
+    class Meta:
+        managed = False
+        db_table = 'popcornflix'
 
 
-# class Uwatchfree(models.Model):
-#     sn = models.IntegerField()
-#     movie_name = models.CharField(max_length=255, blank=True, null=True)
-#     movie_link = models.CharField(max_length=355, blank=True, null=True)
+class Uwatchfree(models.Model):
+    sn = models.IntegerField()
+    movie_name = models.CharField(max_length=255, blank=True, null=True)
+    movie_link = models.CharField(max_length=355, blank=True, null=True)
 
-#     class Meta:
-#         managed = False
-#         db_table = 'uwatchfree'
+    class Meta:
+        managed = False
+        db_table = 'uwatchfree'
